@@ -62,11 +62,11 @@ Animation offset;
           height: size.height/4,
          child: Column(
            children: [
-             textWidget(widget.address, size,"Address"),
+           widget.address == ""?SizedBox():textWidget(widget.address, size,"Address"),
           
-             textWidget(widget.firstmobile ??"", size,"Mobile"),
+           widget.firstmobile == null?SizedBox():textWidget(widget.firstmobile ??"", size,"Mobile"),
            
-             textWidget(widget.secondmobile ??"", size,"GSM")
+           widget.secondmobile == null?SizedBox():textWidget(widget.secondmobile ??"", size,"GSM")
            ],
          ),
         ),

@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch:Colors.purple,
         accentColor: Colors.blue[100],
         primaryColorDark: Colors.blue[900],
+        highlightColor: Colors.amber,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
