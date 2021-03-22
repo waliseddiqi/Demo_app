@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:DemoApp/Courts.dart';
 import 'package:DemoApp/components/dropdownmenu.dart';
+import 'package:DemoApp/olleyy_point.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -69,18 +70,61 @@ void initState() {
        elevation: 100,
        child: ListView(
          children: <Widget>[
-            Divider(),
-           draweritem("route", "Tesis Davet Et", size),
-          Divider(),
-           draweritem("route", "Giriş Yap / Kayıt Ol", size),
            Divider(),
-            draweritem("route", "Tesis / Eğitmen Ekle", size),
+           ListTile(
+             title: Text("Tesis Davet Et",style: TextStyle(fontSize: 22),),
+             onTap: (){
+
+               );
+             },
+           ),
            Divider(),
-            draweritem("route", "Olleyy Puan", size),
+           ListTile(
+             title: Text("Giriş Yap / Kayıt Ol",style: TextStyle(fontSize: 22),),
+             onTap: (){
+               Navigator.push(
+                   context, CupertinoPageRoute(
+                   builder: (context)=>OlleyyPoint()
+               )
+               );
+             },
+           ),
            Divider(),
-            draweritem("route", "Online Dersler", size),
+           ListTile(
+             title: Text("Tesis / Eğitmen Ekle",style: TextStyle(fontSize: 22),),
+             onTap: (){
+               Navigator.push(
+                   context, CupertinoPageRoute(
+                   builder: (context)=>OlleyyPoint()
+               )
+               );
+             },
+           ),
            Divider(),
-            draweritem("route", "Nasıl Çalışır?", size),
+           ListTile(
+             title: Text("Olley Puan",style: TextStyle(fontSize: 22),),
+             onTap: (){
+               Navigator.push(
+                   context, CupertinoPageRoute(
+                   builder: (context)=>OlleyyPoint()
+               )
+               );
+             },
+           ),
+           Divider(),
+           ListTile(
+             title: Text("Online Dersler",style: TextStyle(fontSize: 22),),
+             onTap: (){
+
+             },
+           ),
+           Divider(),
+           ListTile(
+             title: Text("Nasıl Çalışır?",style: TextStyle(fontSize: 22),),
+             onTap: (){
+
+             },
+           ),
            Divider()
          ],
        ),
@@ -88,8 +132,6 @@ void initState() {
 
      body: Stack(
        children: [
-       
-           
          Container(
              child: ListView(
              
