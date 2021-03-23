@@ -75,7 +75,7 @@ void initState() {
              title: Text("Tesis Davet Et",style: TextStyle(fontSize: 22),),
              onTap: (){
 
-               );
+               
              },
            ),
            Divider(),

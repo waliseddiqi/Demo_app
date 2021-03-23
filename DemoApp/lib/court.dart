@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geocoder/geocoder.dart';
 import "package:latlong/latlong.dart" as latLng;
 class Court extends StatefulWidget{
   final String name;
@@ -13,12 +14,37 @@ class Court extends StatefulWidget{
 }
 
 class _CourtState extends State<Court> {
+MapController mapController = new MapController();
+latLng.LatLng lat ;
+latLng.LatLng defaultt =  latLng.LatLng(51.5, -0.09);
+@override
+  void initState(){
+   
+    super.initState();
+  }
+  void getlocation()async{
+  List<Address> address =await  Geocoder.local.findAddressesFromQuery(widget.address);
 
-MapOptions mapOptions = new MapOptions(
+  if(address.length!=0||address!=null){
+    setState(() {
+        lat =  latLng.LatLng( address[0].coordinates.latitude,address[0].coordinates.longitude);
+    });
+    
+  }
+  else{
+    setState(() {
+       lat =  latLng.LatLng(51.5, -0.09);
+    });
+   
+  }
 
-);
-
-
+  
+ 
+  }
+  void move(){
+     mapController.move(lat, 100);
+     print("Sdf");
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -46,9 +72,10 @@ MapOptions mapOptions = new MapOptions(
            height: size.height/4,
            child: Center(
              child: FlutterMap(
+               mapController: mapController,
                  options: MapOptions(
-              center: latLng.LatLng(51.5, -0.09),
-              zoom: 13.0,
+                   bounds:LatLngBounds(lat==null?defaultt:lat)
+            
     ),
     layers: [
               TileLayerOptions(
@@ -60,7 +87,7 @@ MapOptions mapOptions = new MapOptions(
                 Marker(
                   width: 80.0,
                   height: 80.0,
-                  point: latLng.LatLng(51.5, -0.09),
+                  point: lat,
                   builder: (ctx) =>
                   Container(
                     child: Icon(Icons.my_location),
@@ -78,16 +105,19 @@ MapOptions mapOptions = new MapOptions(
              ),),
              Center(
                child: Container(
-                 margin: EdgeInsets.only(top:size.height/20),
-                width: size.width/3,
-                height: size.height/15,
-                child: Center(child: Text("Online Reservation",style: TextStyle(color: Colors.white,fontSize: size.height/45),)),
-                   decoration: BoxDecoration(
-                     color: Colors.purple[300],
-                     borderRadius: BorderRadius.circular(size.height/80),
-                   ),
-                   ),
+                margin: EdgeInsets.only(top:size.height/20),
+               width: size.width/3,
+               height: size.height/15,
+               child: Center(child: Text("Online Reservation",style: TextStyle(color: Colors.white,fontSize: size.height/60,fontWeight: FontWeight.w500),)),
+                  decoration: BoxDecoration(
+                    color: Colors.purple[300],
+                    borderRadius: BorderRadius.circular(size.height/80),
+                  ),
+                  ),
              ),
+             RaisedButton(onPressed: (){
+               move();
+             })
            
        ],
      )

@@ -32,7 +32,7 @@ class _OlleyyPointState extends State<OlleyyPoint> with TickerProviderStateMixin
                 Container(
                     width: MediaQuery.of(context).size.width/1.2,
                     height: MediaQuery.of(context).size.height/7,
-                    color: Colors.tealAccent,
+                    color: Colors.blue[100],
                     child: Center(
                       child: Text(
                         "        Üye olup arkadaşlarını davet et,\n her arkadaşın için 10 lira Olley Puan kazan.",
@@ -76,7 +76,7 @@ class _OlleyyPointState extends State<OlleyyPoint> with TickerProviderStateMixin
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
-
+                         height: MediaQuery.of(context).size.height,
                         child: TabBarView(
                             physics: NeverScrollableScrollPhysics(),
                             controller: tabController,
@@ -112,7 +112,7 @@ class _OlleyyPointState extends State<OlleyyPoint> with TickerProviderStateMixin
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25)
                 ),
-                prefixIcon: Icon(Icons.add_ic_call)
+                prefixIcon: Icon(Icons.add_call)
             ),
             //Kaydedildiğinde text deki değeri değişkene aktar
             onSaved: (deger){},
@@ -138,27 +138,24 @@ class _OlleyyPointState extends State<OlleyyPoint> with TickerProviderStateMixin
               height: MediaQuery.of(context).size.height/10,
             child: Row(
               children: [
-                Expanded(
-                    child: ListView(
-                      children: [
-                        CheckboxListTile(
-                          value: checkBoxState,
-                          onChanged: (secildi){
-                            setState(() {
-                              checkBoxState=secildi;
-                            });
-                          },
-                          activeColor: Colors.red,
-                          //Ilk başta seçimi gelsin ?
-                          selected: false,
-                        ),
-                      ],
+                Container(
+               
+                   width: MediaQuery.of(context).size.width/5.5,
+                    child: Center(
+                      child: CheckboxListTile(
+                        value: checkBoxState,
+                        onChanged: (secildi){
+                          setState(() {
+                            checkBoxState=secildi;
+                          });
+                        },
+                        activeColor: Colors.red,
+                        //Ilk başta seçimi gelsin ?
+                        selected: false,
+                      ),
                     ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 15,right:30),
-                  child: Text("Beni Hatırla"),
-                ),
+                Text("Beni Hatırla"),
                 SizedBox(
                   width: 100,
                 ),
@@ -277,45 +274,36 @@ class _OlleyyPointState extends State<OlleyyPoint> with TickerProviderStateMixin
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: ListView(
-                      children: [
-                        CheckboxListTile(
-                          value: checkBoxState,
-                          onChanged: (secildi){
-                            setState(() {
-                              checkBoxState=secildi;
-                            });
-                          },
-                          activeColor: Colors.red,
-                          //Ilk başta seçimi gelsin ?
-                          selected: false,
-                        ),
-                      ],
+                    child: CheckboxListTile(
+                      value: checkBoxState,
+                      onChanged: (secildi){
+                        setState(() {
+                          checkBoxState=secildi;
+                        });
+                      },
+                      activeColor: Colors.red,
+                      //Ilk başta seçimi gelsin ?
+                      selected: false,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 15,right:30),
-                    child: Text("Sözleşmeyi okudum ve kabul ediyorum"),
-                  ),
+                  Text("Sözleşmeyi okudum ve kabul ediyorum"),
                   SizedBox(
                     width: 40,
                   )
                 ],
               ),
             ),
-            Container(
+                Container(
                 width: MediaQuery.of(context).size.width/1.5,
                 height: MediaQuery.of(context).size.height/14,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: Colors.indigo,
+                borderRadius: BorderRadius.circular(25),
+                color: Colors.indigo,
                 ),
-
                 child: Center(
-                  child: Text(
-                    "Telefonuma Doğrulama SMS'i Gönder",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                child: Text(
+                "Telefonuma Doğrulama SMS'i Gönder",
+                style: TextStyle(color: Colors.white),),
                 )
             )
           ],
